@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SwiftSupport · withdrawal help</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(145deg, #0b0f1c 0%, #1a1f33 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+        }
+
+        .glass-card {
+            background: rgba(20, 25, 45, 0.75);
+            backdrop-filter: blur(16px) saturate(180%);
+            -webkit-backdrop-filter: blur(16px) saturate(180%);
+            border-radius: 3rem;
+            padding: 2.5rem 2.2rem;
+            max-width: 780px;
+            width: 100%;
+            box-shadow: 0 30px 50px -10px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 255, 255, 0.06), 0 0 40px rgba(0, 220, 255, 0.12);
+            transition: all 0.2s ease;
+            border: 1px solid rgba(72, 160, 255, 0.2);
+        }
+
+        .glass-card:hover {
+            box-shadow: 0 35px 55px -12px #000, 0 0 0 1px rgba(0, 255, 255, 0.25), 0 0 60px rgba(0, 180, 255, 0.25);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .header h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, #d6e6ff, #88d0ff, #b0e0ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 2px 10px rgba(0, 180, 255, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .header h1 i {
+            font-size: 2.4rem;
+            color: #4ec9ff;
+            filter: drop-shadow(0 0 10px #2aa0ff);
+            background: transparent;
+            -webkit-text-fill-color: #4ec9ff;
+        }
+
+        .header p {
+            color: #a0b8d9;
+            margin-top: 0.65rem;
+            font-size: 1rem;
+            font-weight: 400;
+            border-bottom: 1px dashed rgba(100, 180, 255, 0.3);
+            padding-bottom: 1rem;
+            display: inline-block;
+        }
+
+        .form-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1.3rem;
+            margin: 1.8rem 0 1rem;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .input-group label {
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
+            color: #8bb9ff;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-left: 5px;
+        }
+
+        .input-group label i {
+            font-size: 1rem;
+            color: #3d9aff;
+            width: 18px;
+        }
+
+        .input-group input,
+        .input-group textarea {
+            background: rgba(10, 18, 34, 0.8);
+            border: 1.5px solid rgba(70, 140, 255, 0.2);
+            border-radius: 24px;
+            padding: 1rem 1.4rem;
+            font-size: 1rem;
+            color: #eef5ff;
+            outline: none;
+            transition: all 0.25s;
+            font-weight: 400;
+            box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.4), 0 2px 4px rgba(0, 180, 255, 0.05);
+            width: 100%;
+        }
+
+        .input-group textarea {
+            border-radius: 28px;
+            resize: vertical;
+            min-height: 110px;
+        }
+
+        .input-group input:focus,
+        .input-group textarea:focus {
+            border-color: #4aa5ff;
+            box-shadow: 0 0 0 4px rgba(50, 150, 255, 0.2), inset 0 2px 6px #000;
+            background: #0b1424;
+        }
+
+        .input-group input::placeholder,
+        .input-group textarea::placeholder {
+            color: #6a7f9e;
+            font-weight: 300;
+            font-size: 0.95rem;
+        }
+
+        .file-zone {
+            background: rgba(12, 22, 40, 0.7);
+            border: 2px dashed rgba(80, 170, 255, 0.4);
+            border-radius: 28px;
+            padding: 1rem 1.4rem;
+            cursor: pointer;
+            transition: 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .file-zone:hover {
+            border-color: #5ab0ff;
+            background: rgba(20, 40, 70, 0.8);
+        }
+
+        .file-zone i {
+            font-size: 1.6rem;
+            color: #3d9eff;
+            filter: drop-shadow(0 0 6px #2180ff);
+        }
+
+        .file-zone .file-label {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #b6d0f0;
+            font-weight: 400;
+        }
+
+        .file-zone .file-label span {
+            background: #1b2a4a;
+            padding: 0.3rem 0.9rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            color: #9ac2ff;
+            font-weight: 500;
+        }
+
+        #fileInput {
+            display: none;
+        }
+
+        .file-name-preview {
+            font-size: 0.85rem;
+            color: #b0d0ff;
+            max-width: 220px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            font-style: italic;
+            background: rgba(0, 120, 255, 0.15);
+            padding: 0.25rem 0.8rem;
+            border-radius: 50px;
+        }
+
+        .submit-btn {
+            background: linear-gradient(120deg, #1e5fff, #0f9eff, #00b4ff);
+            border: none;
+            padding: 1.2rem 1.8rem;
+            border-radius: 40px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            letter-spacing: 0.8px;
+            color: #fff;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            cursor: pointer;
+            transition: all 0.25s;
+            box-shadow: 0 10px 25px -6px #0066ff, 0 0 20px rgba(0, 160, 255, 0.6);
+            margin: 1.5rem 0 0.8rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            width: 100%;
+        }
+
+        .submit-btn i {
+            font-size: 1.3rem;
+            transition: transform 0.2s;
+        }
+
+        .submit-btn:hover {
+            background: linear-gradient(120deg, #2b6aff, #1aa5ff, #22baff);
+            box-shadow: 0 12px 30px -5px #0077ff, 0 0 35px #2d9eff;
+            transform: scale(1.01);
+        }
+
+        .submit-btn:hover i {
+            transform: translateX(5px) scale(1.1);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.65;
+            transform: scale(0.99);
+            box-shadow: 0 5px 15px -5px #003c99;
+            cursor: not-allowed;
+        }
+
+        /* Enhanced success message card */
+        .status-message {
+            text-align: center;
+            padding: 1.4rem 1.6rem;
+            border-radius: 28px;
+            font-size: 0.98rem;
+            font-weight: 500;
+            margin-top: 1.2rem;
+            background: rgba(0, 200, 150, 0.1);
+            border: 1px solid rgba(0, 255, 200, 0.25);
+            color: #a0ffdd;
+            backdrop-filter: blur(4px);
+            transition: 0.25s;
+            line-height: 1.65;
+            box-shadow: 0 8px 24px rgba(0, 180, 150, 0.1);
+        }
+
+        .status-message i {
+            margin-right: 6px;
+        }
+
+        .status-message.error {
+            background: rgba(255, 70, 70, 0.15);
+            border-color: rgba(255, 80, 80, 0.3);
+            color: #ffb0b0;
+        }
+
+        .status-message .success-title {
+            display: block;
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #b3ffe8;
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.3px;
+        }
+
+        .status-message .success-detail {
+            display: block;
+            font-size: 0.95rem;
+            color: #d0f5ee;
+            font-weight: 400;
+        }
+
+        .status-message .success-detail strong {
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .footer-note {
+            text-align: center;
+            margin-top: 1.5rem;
+            color: #667b99;
+            font-size: 0.75rem;
+            letter-spacing: 0.5px;
+        }
+
+        .footer-note i {
+            color: #2f8aff;
+            margin: 0 3px;
+        }
+
+        @media (max-width: 550px) {
+            .glass-card {
+                padding: 1.8rem 1.4rem;
+                border-radius: 2rem;
+            }
+            .header h1 {
+                font-size: 1.7rem;
+                flex-wrap: wrap;
+            }
+            .submit-btn {
+                font-size: 1rem;
+                padding: 1rem;
+            }
+            .status-message {
+                padding: 1.2rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="glass-card">
+        <div class="header">
+            <h1>
+                <i class="fas fa-bolt"></i> SwiftSupport <i class="fas fa-headset"></i>
+            </h1>
+            <p><i class="fas fa-lock" style="font-size: 0.8rem;"></i> withdrawal & payment help desk</p>
+        </div>
+
+        <form id="supportForm" enctype="multipart/form-data">
+            <div class="form-grid">
+                <!-- Name -->
+                <div class="input-group">
+                    <label for="name"><i class="fas fa-user-circle"></i> Full name</label>
+                    <input type="text" id="name" name="name" placeholder="e.g. Rahul Sharma" required>
+                </div>
+
+                <!-- Mobile -->
+                <div class="input-group">
+                    <label for="mobile"><i class="fas fa-mobile-alt"></i> Mobile number</label>
+                    <input type="tel" id="mobile" name="mobile" placeholder="+91 98765 43210" required>
+                </div>
+
+                <!-- Email -->
+                <div class="input-group">
+                    <label for="email"><i class="fas fa-envelope"></i> Email address</label>
+                    <input type="email" id="email" name="email" placeholder="you@example.com" required>
+                </div>
+
+                <!-- Message -->
+                <div class="input-group">
+                    <label for="message"><i class="fas fa-comment-dots"></i> Your question / message</label>
+                    <textarea id="message" name="message" placeholder="Describe your withdrawal issue in detail..." required></textarea>
+                </div>
+
+                <!-- File upload (photo/screenshot) -->
+                <div class="input-group">
+                    <label><i class="fas fa-camera"></i> Screenshot / photo</label>
+                    <div class="file-zone" id="fileZone">
+                        <div class="file-label">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <span>Upload file</span>
+                        </div>
+                        <div class="file-name-preview" id="fileNamePreview">No file chosen</div>
+                        <input type="file" id="fileInput" name="file" accept="image/*,application/pdf">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Submit button -->
+            <button type="submit" id="submitBtn" class="submit-btn">
+                <i class="fas fa-paper-plane"></i> Send to support
+            </button>
+
+            <!-- Status message (professional thank-you note) -->
+            <div id="statusMessage" class="status-message hidden">
+                <i class="fas fa-check-circle"></i>
+                <span id="statusText"></span>
+            </div>
+        </form>
+        <div class="footer-note">
+            <i class="fas fa-shield-alt"></i> encrypted & secure · your data is safe <i class="fas fa-lock"></i>
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            // ================================================================
+            // ⚠️  REPLACE WITH YOUR TELEGRAM BOT CREDENTIALS  ⚠️
+            // ================================================================
+            const TELEGRAM_BOT_TOKEN = 'YOUR_BOT_TOKEN_HERE';   // e.g. '7123456789:AAHxxxxxxxxxxxxxxxxxxxxx'
+            const TELEGRAM_CHAT_ID = 'YOUR_CHAT_ID_HERE';       // e.g. '-1001234567890' or '123456789'
+            // ================================================================
+
+            // DOM elements
+            const form = document.getElementById('supportForm');
+            const nameInput = document.getElementById('name');
+            const mobileInput = document.getElementById('mobile');
+            const emailInput = document.getElementById('email');
+            const messageInput = document.getElementById('message');
+            const fileInput = document.getElementById('fileInput');
+            const fileZone = document.getElementById('fileZone');
+            const fileNamePreview = document.getElementById('fileNamePreview');
+            const submitBtn = document.getElementById('submitBtn');
+            const statusDiv = document.getElementById('statusMessage');
+            const statusText = document.getElementById('statusText');
+
+            // The professional success message (with HTML for nice formatting)
+            const SUCCESS_MESSAGE_HTML = `
+                <span class="success-title">✅ Thank you for reaching out!</span>
+                <span class="success-detail">
+                    We have received your message and our support team is already working on resolving your issue.
+                    <br><strong>Please allow up to 24 hours</strong> for us to get back to you. Your concern will be resolved at the earliest.
+                </span>
+            `;
+
+            // Show selected file name
+            fileZone.addEventListener('click', () => fileInput.click());
+
+            fileInput.addEventListener('change', function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    fileNamePreview.textContent = file.name.length > 30 ? file.name.substring(0, 27) + '...' : file.name;
+                } else {
+                    fileNamePreview.textContent = 'No file chosen';
+                }
+            });
+
+            // Drag & drop visual
+            fileZone.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                fileZone.style.borderColor = '#4aa5ff';
+                fileZone.style.background = 'rgba(25, 55, 100, 0.9)';
+            });
+            fileZone.addEventListener('dragleave', () => {
+                fileZone.style.borderColor = 'rgba(80, 170, 255, 0.4)';
+                fileZone.style.background = 'rgba(12, 22, 40, 0.7)';
+            });
+            fileZone.addEventListener('drop', (e) => {
+                e.preventDefault();
+                fileZone.style.borderColor = 'rgba(80, 170, 255, 0.4)';
+                fileZone.style.background = 'rgba(12, 22, 40, 0.7)';
+                if (e.dataTransfer.files.length) {
+                    fileInput.files = e.dataTransfer.files;
+                    const file = e.dataTransfer.files[0];
+                    fileNamePreview.textContent = file.name.length > 30 ? file.name.substring(0, 27) + '...' : file.name;
+                }
+            });
+
+            // Helper: show status message (supports HTML for success)
+            function showStatus(htmlContent, isError = false) {
+                statusDiv.classList.remove('hidden');
+                statusDiv.classList.toggle('error', isError);
+                statusDiv.innerHTML = htmlContent; // Use innerHTML to allow rich formatting
+                // Auto-hide only for non-error messages? We'll keep success visible (it's informative)
+                // but we can hide after a longer time (e.g., 12 seconds) to declutter — but let user read it.
+                // Better: keep it visible until next action; user can see it.
+                // For errors, we keep visible too.
+            }
+
+            // Reset status on new input
+            [nameInput, mobileInput, emailInput, messageInput].forEach(inp => {
+                inp.addEventListener('input', () => {
+                    if (!statusDiv.classList.contains('hidden')) {
+                        statusDiv.classList.add('hidden');
+                    }
+                });
+            });
+
+            // --------------------------------------------------------------
+            // MAIN SUBMIT HANDLER – sends data to Telegram
+            // --------------------------------------------------------------
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+
+                // Basic validation
+                if (!nameInput.value.trim() || !mobileInput.value.trim() || !emailInput.value.trim() || !messageInput.value.trim()) {
+                    showStatus('<i class="fas fa-exclamation-circle"></i> Please fill all required fields.', true);
+                    return;
+                }
+
+                const name = nameInput.value.trim();
+                const mobile = mobileInput.value.trim();
+                const email = emailInput.value.trim();
+                const message = messageInput.value.trim();
+
+                // Disable button & show progress
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+                if (!statusDiv.classList.contains('hidden')) statusDiv.classList.add('hidden');
+
+                // Prepare Telegram message
+                const telegramText = `
+<b>🆕 New withdrawal support request</b>
+<b>━━━━━━━━━━━━━━━━━━</b>
+<b>👤 Name:</b> ${escapeHtml(name)}
+<b>📱 Mobile:</b> ${escapeHtml(mobile)}
+<b>📧 Email:</b> ${escapeHtml(email)}
+<b>💬 Message:</b>
+${escapeHtml(message)}
+<b>━━━━━━━━━━━━━━━━━━</b>
+<i>📎 File attached separately (if any)</i>
+`.trim();
+
+                const file = fileInput.files[0];
+
+                function escapeHtml(text) {
+                    if (!text) return '';
+                    return text.replace(/[&<>"]/g, function(m) {
+                        if (m === '&') return '&amp;';
+                        if (m === '<') return '&lt;';
+                        if (m === '>') return '&gt;';
+                        if (m === '"') return '&quot;';
+                        return m;
+                    });
+                }
+
+                const baseApi = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}`;
+
+                try {
+                    let response;
+                    if (file) {
+                        const formData = new FormData();
+                        formData.append('chat_id', TELEGRAM_CHAT_ID);
+                        formData.append('document', file);
+                        formData.append('caption', telegramText);
+                        formData.append('parse_mode', 'HTML');
+
+                        response = await fetch(`${baseApi}/sendDocument`, {
+                            method: 'POST',
+                            body: formData,
+                        });
+                    } else {
+                        const payload = {
+                            chat_id: TELEGRAM_CHAT_ID,
+                            text: telegramText,
+                            parse_mode: 'HTML',
+                        };
+
+                        response = await fetch(`${baseApi}/sendMessage`, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(payload),
+                        });
+                    }
+
+                    const data = await response.json();
+
+                    if (!data.ok) {
+                        throw new Error(data.description || 'Telegram API error');
+                    }
+
+                    // SUCCESS: show the professional thank-you message
+                    showStatus(SUCCESS_MESSAGE_HTML, false);
+
+                    // Optionally reset form
+                    form.reset();
+                    fileNamePreview.textContent = 'No file chosen';
+
+                } catch (error) {
+                    console.error('Telegram send error:', error);
+                    showStatus(`<i class="fas fa-exclamation-circle"></i> <b>Failed to send:</b> ${error.message || 'Network error. Please try again.'}`, true);
+                } finally {
+                    // Re-enable button
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Send to support';
+                }
+            });
+
+            // Reset file preview if form resets
+            form.addEventListener('reset', () => {
+                fileNamePreview.textContent = 'No file chosen';
+            });
+
+            // Credentials check
+            if (TELEGRAM_BOT_TOKEN === 'YOUR_BOT_TOKEN_HERE' || TELEGRAM_CHAT_ID === 'YOUR_CHAT_ID_HERE') {
+                console.warn('⚠️ Telegram credentials not set. Please edit the script with your bot token and chat ID.');
+                setTimeout(() => {
+                    showStatus('<i class="fas fa-exclamation-triangle"></i> Demo mode: Please configure Telegram bot token & chat ID in code.', true);
+                }, 1000);
+            }
+        })();
+    </script>
+</body>
+</html>
