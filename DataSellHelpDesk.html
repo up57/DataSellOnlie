@@ -3,30 +3,25 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Data Sell Help Desk</title>
+  <title>Data Sell Help Desk · Popup</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
-    /* ----- CSS Variables for light / dark theme ----- */
+    /* ---------- CSS variables (light & dark) ---------- */
     :root {
       --bg-body: linear-gradient(145deg, #0b0f1c 0%, #1a1f33 100%);
-      --glass-bg: rgba(20, 25, 45, 0.75);
-      --glass-border: rgba(72, 160, 255, 0.2);
-      --glass-shadow: 0 30px 50px -10px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 255, 255, 0.06), 0 0 40px rgba(0, 220, 255, 0.12);
-      --glass-hover-shadow: 0 35px 55px -12px #000, 0 0 0 1px rgba(0, 255, 255, 0.25), 0 0 60px rgba(0, 180, 255, 0.25);
+      --glass-bg: rgba(20, 25, 45, 0.85);
+      --glass-border: rgba(72, 160, 255, 0.25);
+      --glass-shadow: 0 30px 50px -10px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.06), 0 0 40px rgba(0, 220, 255, 0.15);
       --text-primary: #eef5ff;
-      --text-header: linear-gradient(135deg, #d6e6ff, #88d0ff, #b0e0ff);
-      --text-header-icon: #4ec9ff;
       --text-sub: #a0b8d9;
       --label-color: #8bb9ff;
       --input-bg: rgba(10, 18, 34, 0.8);
-      --input-border: rgba(70, 140, 255, 0.2);
+      --input-border: rgba(70, 140, 255, 0.25);
       --input-focus-border: #4aa5ff;
-      --input-focus-shadow: 0 0 0 4px rgba(50, 150, 255, 0.2), inset 0 2px 6px #000;
       --placeholder-color: #6a7f9e;
       --file-zone-bg: rgba(12, 22, 40, 0.7);
       --file-zone-border: rgba(80, 170, 255, 0.4);
       --file-zone-hover-bg: rgba(20, 40, 70, 0.8);
-      --file-zone-hover-border: #5ab0ff;
       --file-label-color: #b6d0f0;
       --file-preview-bg: rgba(0, 120, 255, 0.15);
       --file-preview-color: #b0d0ff;
@@ -34,45 +29,41 @@
       --btn-hover-gradient: linear-gradient(120deg, #2b6aff, #1aa5ff, #22baff);
       --btn-shadow: 0 10px 25px -6px #0066ff, 0 0 20px rgba(0, 160, 255, 0.6);
       --btn-hover-shadow: 0 12px 30px -5px #0077ff, 0 0 35px #2d9eff;
-      --success-bg: rgba(0, 200, 150, 0.1);
-      --success-border: rgba(0, 255, 200, 0.25);
+      --success-bg: rgba(0, 200, 150, 0.12);
+      --success-border: rgba(0, 255, 200, 0.3);
       --success-color: #a0ffdd;
-      --error-bg: rgba(255, 70, 70, 0.15);
-      --error-border: rgba(255, 80, 80, 0.3);
-      --error-color: #ffb0b0;
       --footer-color: #667b99;
       --footer-icon: #2f8aff;
       --header-underline: rgba(100, 180, 255, 0.3);
-      --card-transition: all 0.2s ease;
       --toggle-bg: rgba(10, 18, 34, 0.9);
       --toggle-border: rgba(70, 140, 255, 0.3);
       --toggle-color: #b6d0f0;
       --progress-bg: rgba(0, 0, 0, 0.4);
       --progress-fill: linear-gradient(90deg, #1e5fff, #00b4ff);
       --progress-text: #eef5ff;
+      --modal-overlay: rgba(0, 0, 0, 0.65);
+      --modal-bg: rgba(20, 30, 50, 0.95);
+      --modal-border: rgba(100, 200, 255, 0.4);
+      --modal-shadow: 0 30px 60px rgba(0, 150, 255, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.1);
+      --modal-text: #d0e5ff;
+      --modal-title: #9dd0ff;
     }
 
-    /* Light theme overrides */
     body.light {
       --bg-body: linear-gradient(145deg, #e9eff7 0%, #dbe4f0 100%);
-      --glass-bg: rgba(255, 255, 255, 0.7);
+      --glass-bg: rgba(255, 255, 255, 0.75);
       --glass-border: rgba(0, 100, 200, 0.15);
       --glass-shadow: 0 30px 50px -10px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.8), 0 0 40px rgba(0, 150, 255, 0.1);
-      --glass-hover-shadow: 0 35px 55px -12px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(0, 200, 255, 0.4), 0 0 60px rgba(0, 180, 255, 0.2);
       --text-primary: #1a2640;
-      --text-header: linear-gradient(135deg, #0a2a5e, #1e5fa0, #3a7bc8);
-      --text-header-icon: #1a6ed8;
       --text-sub: #3a506c;
       --label-color: #1a5a9e;
       --input-bg: rgba(255, 255, 255, 0.8);
       --input-border: rgba(0, 100, 200, 0.25);
       --input-focus-border: #1a7ae0;
-      --input-focus-shadow: 0 0 0 4px rgba(30, 120, 255, 0.15), inset 0 2px 6px rgba(0,0,0,0.05);
       --placeholder-color: #6a7f9e;
       --file-zone-bg: rgba(240, 245, 255, 0.7);
       --file-zone-border: rgba(0, 120, 255, 0.3);
       --file-zone-hover-bg: rgba(220, 235, 255, 0.9);
-      --file-zone-hover-border: #1a7ae0;
       --file-label-color: #1a4a7a;
       --file-preview-bg: rgba(0, 100, 200, 0.1);
       --file-preview-color: #1a5a9e;
@@ -83,9 +74,6 @@
       --success-bg: rgba(0, 180, 130, 0.1);
       --success-border: rgba(0, 200, 150, 0.3);
       --success-color: #006b4f;
-      --error-bg: rgba(220, 50, 50, 0.1);
-      --error-border: rgba(200, 50, 50, 0.3);
-      --error-color: #a02020;
       --footer-color: #4a5f7a;
       --footer-icon: #1a6ed8;
       --header-underline: rgba(0, 100, 200, 0.2);
@@ -95,9 +83,14 @@
       --progress-bg: rgba(0, 0, 0, 0.1);
       --progress-fill: linear-gradient(90deg, #1a5ae0, #00a4ff);
       --progress-text: #1a2640;
+      --modal-overlay: rgba(0, 0, 0, 0.45);
+      --modal-bg: rgba(255, 255, 255, 0.95);
+      --modal-border: rgba(0, 120, 220, 0.3);
+      --modal-shadow: 0 30px 60px rgba(0, 100, 200, 0.2), 0 0 0 1px rgba(255, 255, 255, 0.8);
+      --modal-text: #1a2a44;
+      --modal-title: #0a4a8a;
     }
 
-    /* ----- base reset ----- */
     * {
       margin: 0;
       padding: 0;
@@ -115,47 +108,41 @@
       transition: background 0.3s ease;
     }
 
-    /* ----- main card – fixed header inside, scrollable content ----- */
+    /* ----- main card (same as before, but simplified for demo) ----- */
     .glass-card {
       background: var(--glass-bg);
       backdrop-filter: blur(16px) saturate(180%);
       -webkit-backdrop-filter: blur(16px) saturate(180%);
       border-radius: 2.5rem;
-      padding: 0;
       max-width: 780px;
       width: 100%;
       max-height: 90vh;
       display: flex;
       flex-direction: column;
       box-shadow: var(--glass-shadow);
-      transition: var(--card-transition), background 0.3s ease, box-shadow 0.3s ease;
       border: 1px solid var(--glass-border);
       overflow: hidden;
+      transition: box-shadow 0.3s ease, background 0.3s ease;
     }
 
     .glass-card:hover {
-      box-shadow: var(--glass-hover-shadow);
+      box-shadow: var(--glass-shadow), 0 0 30px rgba(0, 180, 255, 0.2);
     }
 
-    /* ----- FIXED HEADER (stays at top) ----- */
     .header {
       flex-shrink: 0;
       padding: 1.5rem 2rem 0.8rem 2rem;
       text-align: center;
-      position: relative;
       background: var(--glass-bg);
       backdrop-filter: blur(16px) saturate(180%);
-      -webkit-backdrop-filter: blur(16px) saturate(180%);
       border-bottom: 1px solid var(--header-underline);
-      transition: background 0.3s ease, border-color 0.3s ease;
-      z-index: 5;
     }
 
     .header h1 {
       font-size: 1.9rem;
       font-weight: 700;
       letter-spacing: -0.5px;
-      background: var(--text-header);
+      background: linear-gradient(135deg, #d6e6ff, #88d0ff, #b0e0ff);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
@@ -163,48 +150,30 @@
       align-items: center;
       justify-content: center;
       gap: 10px;
-      flex-wrap: wrap;
     }
 
     .header h1 i {
       font-size: 2.1rem;
-      color: var(--text-header-icon);
+      color: #4ec9ff;
       filter: drop-shadow(0 0 10px rgba(42, 160, 255, 0.6));
       background: transparent;
-      -webkit-text-fill-color: var(--text-header-icon);
+      -webkit-text-fill-color: #4ec9ff;
     }
 
     .header p {
       color: var(--text-sub);
       margin-top: 0.5rem;
       font-size: 0.95rem;
-      font-weight: 400;
       padding-bottom: 0.6rem;
-      display: inline-block;
-      transition: color 0.3s ease;
     }
 
-    /* ----- scrollable content area (form + footer) ----- */
     .card-content {
       flex: 1;
       overflow-y: auto;
       padding: 1.2rem 2rem 1.8rem 2rem;
       scrollbar-width: thin;
-      scrollbar-color: var(--input-border) transparent;
     }
 
-    .card-content::-webkit-scrollbar {
-      width: 6px;
-    }
-    .card-content::-webkit-scrollbar-track {
-      background: transparent;
-    }
-    .card-content::-webkit-scrollbar-thumb {
-      background: var(--input-border);
-      border-radius: 10px;
-    }
-
-    /* ----- form styles ----- */
     .form-grid {
       display: flex;
       flex-direction: column;
@@ -228,12 +197,11 @@
       align-items: center;
       gap: 8px;
       margin-left: 5px;
-      transition: color 0.3s ease;
     }
 
     .input-group label i {
       font-size: 1rem;
-      color: var(--text-header-icon);
+      color: #4ec9ff;
       width: 18px;
     }
 
@@ -246,9 +214,8 @@
       font-size: 1rem;
       color: var(--text-primary);
       outline: none;
-      transition: all 0.25s, background 0.3s ease, border-color 0.3s ease, color 0.3s ease;
-      font-weight: 400;
-      box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.2), 0 2px 4px rgba(0, 180, 255, 0.05);
+      transition: all 0.25s;
+      box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.2);
       width: 100%;
     }
 
@@ -261,8 +228,7 @@
     .input-group input:focus,
     .input-group textarea:focus {
       border-color: var(--input-focus-border);
-      box-shadow: var(--input-focus-shadow);
-      background: var(--input-bg);
+      box-shadow: 0 0 0 4px rgba(50, 150, 255, 0.2), inset 0 2px 6px #000;
     }
 
     .input-group input::placeholder,
@@ -272,14 +238,14 @@
       font-size: 0.95rem;
     }
 
-    /* ----- file upload zone ----- */
+    /* file zone */
     .file-zone {
       background: var(--file-zone-bg);
       border: 2px dashed var(--file-zone-border);
       border-radius: 28px;
       padding: 1rem 1.4rem;
       cursor: pointer;
-      transition: 0.2s, background 0.3s ease, border-color 0.3s ease;
+      transition: 0.2s;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -288,13 +254,13 @@
     }
 
     .file-zone:hover {
-      border-color: var(--file-zone-hover-border);
+      border-color: var(--input-focus-border);
       background: var(--file-zone-hover-bg);
     }
 
     .file-zone i {
       font-size: 1.6rem;
-      color: var(--text-header-icon);
+      color: #4ec9ff;
       filter: drop-shadow(0 0 6px rgba(33, 128, 255, 0.6));
     }
 
@@ -303,8 +269,6 @@
       align-items: center;
       gap: 12px;
       color: var(--file-label-color);
-      font-weight: 400;
-      transition: color 0.3s ease;
     }
 
     .file-zone .file-label span {
@@ -331,101 +295,68 @@
       background: var(--file-preview-bg);
       padding: 0.25rem 0.8rem;
       border-radius: 50px;
-      transition: color 0.3s ease, background 0.3s ease;
     }
 
-    /* ----- progress bar for file reading (local) ----- */
-    .upload-progress-container {
+    /* progress bars (simplified, still functional) */
+    .upload-progress-container,
+    .sending-progress-container {
       display: none;
       align-items: center;
       gap: 12px;
       margin-top: 8px;
-      padding: 0 6px;
     }
 
-    .upload-progress-container.active {
+    .upload-progress-container.active,
+    .sending-progress-container.active {
       display: flex;
     }
 
-    .progress-bar-wrapper {
-      flex: 1;
-      height: 8px;
-      background: var(--progress-bg);
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: inset 0 1px 3px rgba(0,0,0,0.3);
-    }
-
-    .progress-bar-fill {
-      height: 100%;
-      width: 0%;
-      background: var(--progress-fill);
-      border-radius: 10px;
-      transition: width 0.15s ease;
-      box-shadow: 0 0 8px rgba(0, 180, 255, 0.6);
-    }
-
-    .progress-percent {
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: var(--progress-text);
-      min-width: 42px;
-      text-align: right;
-      letter-spacing: 0.3px;
-      transition: color 0.3s ease;
-    }
-
-    /* ----- live sending progress bar (during fetch upload) ----- */
     .sending-progress-container {
-      display: none;
       flex-direction: column;
       gap: 6px;
       margin: 0.8rem 0 0.2rem;
-      padding: 0 6px;
-    }
-
-    .sending-progress-container.active {
-      display: flex;
     }
 
     .sending-progress-label {
       display: flex;
       justify-content: space-between;
-      align-items: center;
       font-size: 0.8rem;
       font-weight: 500;
       color: var(--text-sub);
-      letter-spacing: 0.3px;
     }
 
     .sending-progress-label .sent-percent {
       font-weight: 700;
-      color: var(--text-header-icon);
+      color: #4ec9ff;
     }
 
+    .progress-bar-wrapper,
     .sending-bar-wrapper {
-      height: 10px;
+      flex: 1;
+      height: 8px;
       background: var(--progress-bg);
       border-radius: 10px;
       overflow: hidden;
-      box-shadow: inset 0 1px 4px rgba(0,0,0,0.4);
     }
 
+    .progress-bar-fill,
     .sending-bar-fill {
       height: 100%;
       width: 0%;
       background: var(--progress-fill);
       border-radius: 10px;
-      transition: width 0.2s ease;
-      box-shadow: 0 0 12px rgba(0, 180, 255, 0.8);
+      transition: width 0.15s ease;
+    }
+
+    .sending-bar-fill {
       position: relative;
     }
 
     .sending-bar-fill::after {
       content: '';
       position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.35), transparent);
+      inset: 0;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
       animation: shimmer 1.2s infinite;
     }
 
@@ -434,7 +365,15 @@
       100% { transform: translateX(100%); }
     }
 
-    /* ----- submit button ----- */
+    .progress-percent {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--progress-text);
+      min-width: 42px;
+      text-align: right;
+    }
+
+    /* submit button */
     .submit-btn {
       background: var(--btn-gradient);
       border: none;
@@ -450,7 +389,7 @@
       justify-content: center;
       gap: 14px;
       cursor: pointer;
-      transition: all 0.25s, background 0.3s ease, box-shadow 0.3s ease;
+      transition: all 0.25s;
       box-shadow: var(--btn-shadow);
       margin: 1.2rem 0 0.5rem;
       border: 1px solid rgba(255, 255, 255, 0.2);
@@ -462,83 +401,29 @@
       transition: transform 0.2s;
     }
 
-    .submit-btn:hover {
+    .submit-btn:hover:not(:disabled) {
       background: var(--btn-hover-gradient);
       box-shadow: var(--btn-hover-shadow);
       transform: scale(1.01);
     }
 
-    .submit-btn:hover i {
+    .submit-btn:hover:not(:disabled) i {
       transform: translateX(5px) scale(1.1);
     }
 
     .submit-btn:disabled {
       opacity: 0.65;
       transform: scale(0.99);
-      box-shadow: 0 5px 15px -5px #003c99;
       cursor: not-allowed;
     }
 
-    /* ----- status message ----- */
-    .status-message {
-      text-align: center;
-      padding: 1.4rem 1.6rem;
-      border-radius: 28px;
-      font-size: 0.98rem;
-      font-weight: 500;
-      margin-top: 1.2rem;
-      background: var(--success-bg);
-      border: 1px solid var(--success-border);
-      color: var(--success-color);
-      backdrop-filter: blur(4px);
-      transition: 0.25s, background 0.3s ease, border-color 0.3s ease, color 0.3s ease;
-      line-height: 1.65;
-      box-shadow: 0 8px 24px rgba(0, 180, 150, 0.1);
-    }
-
-    .status-message i {
-      margin-right: 6px;
-    }
-
-    .status-message.error {
-      background: var(--error-bg);
-      border-color: var(--error-border);
-      color: var(--error-color);
-    }
-
-    .status-message .success-title {
-      display: block;
-      font-size: 1.15rem;
-      font-weight: 700;
-      color: var(--success-color);
-      margin-bottom: 0.5rem;
-      letter-spacing: 0.3px;
-    }
-
-    .status-message .success-detail {
-      display: block;
-      font-size: 0.95rem;
-      color: var(--success-color);
-      font-weight: 400;
-    }
-
-    .status-message .success-detail strong {
-      color: var(--text-primary);
-      font-weight: 600;
-    }
-
-    .hidden {
-      display: none;
-    }
-
-    /* ----- footer note ----- */
+    /* footer */
     .footer-note {
       text-align: center;
       margin-top: 1.2rem;
       color: var(--footer-color);
       font-size: 0.75rem;
       letter-spacing: 0.5px;
-      transition: color 0.3s ease;
     }
 
     .footer-note i {
@@ -546,7 +431,7 @@
       margin: 0 3px;
     }
 
-    /* ----- theme toggle button (fixed top-right) ----- */
+    /* theme toggle */
     .theme-toggle {
       position: fixed;
       top: 1.2rem;
@@ -565,7 +450,7 @@
       backdrop-filter: blur(8px);
       transition: all 0.3s ease;
       z-index: 100;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     }
 
     .theme-toggle:hover {
@@ -573,60 +458,150 @@
       border-color: var(--input-focus-border);
     }
 
-    /* ----- responsive tweaks ----- */
+    /* ---------- POPUP MODAL (CENTERED, UNIQUE STYLE) ---------- */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: var(--modal-overlay);
+      backdrop-filter: blur(6px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      padding: 1.5rem;
+      animation: fadeIn 0.25s ease;
+    }
+
+    .modal-overlay.show {
+      display: flex;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes popIn {
+      0% { transform: scale(0.85); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    .modal-box {
+      background: var(--modal-bg);
+      backdrop-filter: blur(20px) saturate(200%);
+      -webkit-backdrop-filter: blur(20px) saturate(200%);
+      max-width: 440px;
+      width: 100%;
+      border-radius: 2.5rem;
+      padding: 2rem 2rem 1.8rem;
+      box-shadow: var(--modal-shadow);
+      border: 1px solid var(--modal-border);
+      text-align: center;
+      animation: popIn 0.3s cubic-bezier(0.2, 1.2, 0.4, 1);
+      position: relative;
+    }
+
+    .modal-icon {
+      font-size: 3.8rem;
+      color: #4ec9ff;
+      margin-bottom: 0.8rem;
+      filter: drop-shadow(0 0 18px rgba(0, 200, 255, 0.6));
+      animation: float 2s infinite ease-in-out;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-6px); }
+      100% { transform: translateY(0px); }
+    }
+
+    .modal-title {
+      font-size: 1.6rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #b0e0ff, #4ec9ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 0.6rem;
+      letter-spacing: -0.3px;
+    }
+
+    body.light .modal-title {
+      background: linear-gradient(135deg, #0a4a8a, #1a7ae0);
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
+
+    .modal-message {
+      color: var(--modal-text);
+      font-size: 0.98rem;
+      line-height: 1.6;
+      margin-bottom: 1.6rem;
+      font-weight: 400;
+    }
+
+    .modal-message strong {
+      color: #9dd0ff;
+      font-weight: 600;
+    }
+
+    body.light .modal-message strong {
+      color: #1a5a9e;
+    }
+
+    .modal-close-btn {
+      background: var(--btn-gradient);
+      border: none;
+      padding: 0.9rem 2rem;
+      border-radius: 50px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      color: #fff;
+      cursor: pointer;
+      transition: all 0.25s;
+      box-shadow: 0 8px 20px -6px #0066ff, 0 0 16px rgba(0, 160, 255, 0.5);
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .modal-close-btn:hover {
+      background: var(--btn-hover-gradient);
+      box-shadow: 0 10px 24px -5px #0077ff, 0 0 28px #2d9eff;
+      transform: scale(1.02);
+    }
+
+    /* responsive */
     @media (max-width: 650px) {
-      .glass-card {
-        max-height: 95vh;
-        border-radius: 2rem;
-      }
-      .header {
-        padding: 1.2rem 1.2rem 0.6rem 1.2rem;
-      }
-      .header h1 {
-        font-size: 1.4rem;
-        gap: 6px;
-      }
-      .header h1 i {
-        font-size: 1.5rem;
-      }
-      .card-content {
-        padding: 1rem 1.2rem 1.4rem 1.2rem;
-      }
-      .submit-btn {
-        font-size: 1rem;
-        padding: 1rem;
-      }
-      .theme-toggle {
-        top: 0.8rem;
-        right: 0.8rem;
-        width: 38px;
-        height: 38px;
-        font-size: 1.1rem;
-      }
+      .glass-card { max-height: 95vh; border-radius: 2rem; }
+      .header { padding: 1.2rem 1.2rem 0.6rem; }
+      .header h1 { font-size: 1.4rem; gap: 6px; }
+      .header h1 i { font-size: 1.5rem; }
+      .card-content { padding: 1rem 1.2rem 1.4rem; }
+      .submit-btn { font-size: 1rem; padding: 1rem; }
+      .theme-toggle { top: 0.8rem; right: 0.8rem; width: 38px; height: 38px; font-size: 1.1rem; }
+      .modal-box { padding: 1.8rem 1.5rem 1.5rem; border-radius: 2rem; }
+      .modal-title { font-size: 1.3rem; }
+      .modal-icon { font-size: 3rem; }
     }
 
     @media (max-width: 400px) {
-      .header h1 {
-        font-size: 1.2rem;
-      }
-      .header h1 i {
-        font-size: 1.2rem;
-      }
-      .file-zone {
-        flex-direction: column;
-        align-items: flex-start;
-      }
+      .header h1 { font-size: 1.2rem; }
+      .header h1 i { font-size: 1.2rem; }
+      .file-zone { flex-direction: column; align-items: flex-start; }
     }
   </style>
 </head>
 <body>
-  <!-- theme toggle button -->
+  <!-- theme toggle -->
   <div class="theme-toggle" id="themeToggle" title="Toggle dark/light mode">
     <i class="fas fa-moon"></i>
   </div>
 
   <div class="glass-card">
-    <!-- FIXED header (stays at top while content scrolls) -->
     <div class="header">
       <h1>
         <i class="fas fa-bolt"></i> Captcha solve Help Desk <i class="fas fa-headset"></i>
@@ -634,35 +609,25 @@
       <p><i class="fas fa-lock" style="font-size: 0.8rem;"></i> withdrawal & payment help desk</p>
     </div>
 
-    <!-- SCROLLABLE content (form + footer) -->
     <div class="card-content">
-      <form id="supportForm" enctype="multipart/form-data">
+      <form id="supportForm">
         <div class="form-grid">
-          <!-- Name -->
           <div class="input-group">
             <label for="name"><i class="fas fa-user-circle"></i> Full name</label>
             <input type="text" id="name" name="name" placeholder="e.g. Rahul Sharma" required>
           </div>
-
-          <!-- Mobile -->
           <div class="input-group">
             <label for="mobile"><i class="fas fa-mobile-alt"></i> Mobile number</label>
             <input type="tel" id="mobile" name="mobile" placeholder="+91 98765 43210" required>
           </div>
-
-          <!-- Email -->
           <div class="input-group">
             <label for="email"><i class="fas fa-envelope"></i> Email address</label>
             <input type="email" id="email" name="email" placeholder="you@example.com" required>
           </div>
-
-          <!-- Message -->
           <div class="input-group">
             <label for="message"><i class="fas fa-comment-dots"></i> Your question / message</label>
             <textarea id="message" name="message" placeholder="Describe your withdrawal issue in detail..." required></textarea>
           </div>
-
-          <!-- File upload (photo/screenshot) + local read progress -->
           <div class="input-group">
             <label><i class="fas fa-camera"></i> Screenshot / photo</label>
             <div class="file-zone" id="fileZone">
@@ -673,7 +638,6 @@
               <div class="file-name-preview" id="fileNamePreview">No file chosen</div>
               <input type="file" id="fileInput" name="file" accept="image/*,application/pdf">
             </div>
-            <!-- local read progress (when file selected) -->
             <div class="upload-progress-container" id="progressContainer">
               <div class="progress-bar-wrapper">
                 <div class="progress-bar-fill" id="progressBarFill"></div>
@@ -683,7 +647,6 @@
           </div>
         </div>
 
-        <!-- LIVE SENDING progress bar (shows during fetch upload) -->
         <div class="sending-progress-container" id="sendingProgressContainer">
           <div class="sending-progress-label">
             <span><i class="fas fa-cloud-upload-alt"></i> Sending file...</span>
@@ -694,21 +657,31 @@
           </div>
         </div>
 
-        <!-- Submit button -->
         <button type="submit" id="submitBtn" class="submit-btn">
           <i class="fas fa-paper-plane"></i> Send to support
         </button>
-
-        <!-- Status message -->
-        <div id="statusMessage" class="status-message hidden">
-          <i class="fas fa-check-circle"></i>
-          <span id="statusText"></span>
-        </div>
       </form>
 
       <div class="footer-note">
         <i class="fas fa-shield-alt"></i> encrypted & secure · your data is safe <i class="fas fa-lock"></i>
       </div>
+    </div>
+  </div>
+
+  <!-- ========== POPUP MODAL (centered) ========== -->
+  <div class="modal-overlay" id="successModal">
+    <div class="modal-box">
+      <div class="modal-icon">
+        <i class="fas fa-check-circle"></i>
+      </div>
+      <h2 class="modal-title">Thank you!</h2>
+      <div class="modal-message">
+        We have received your message and our support team is already working on resolving your issue.<br><br>
+        <strong>Please allow up to 24 hours</strong> for us to get back to you. Your concern will be resolved at the earliest.
+      </div>
+      <button class="modal-close-btn" id="modalCloseBtn">
+        <i class="fas fa-thumbs-up"></i> Got it
+      </button>
     </div>
   </div>
 
@@ -739,7 +712,7 @@
         }
       });
 
-      // ---------- Telegram credentials (replace with yours) ----------
+      // ---------- Telegram credentials ----------
       const TELEGRAM_BOT_TOKEN = '8969624914:AAEtYQI9H4uIu2i2OCxutU_ti_Lx9Fb3FV0';
       const TELEGRAM_CHAT_ID = '7300739906';
 
@@ -753,29 +726,19 @@
       const fileZone = document.getElementById('fileZone');
       const fileNamePreview = document.getElementById('fileNamePreview');
       const submitBtn = document.getElementById('submitBtn');
-      const statusDiv = document.getElementById('statusMessage');
-      const statusText = document.getElementById('statusText');
-      // local read progress
       const progressContainer = document.getElementById('progressContainer');
       const progressBarFill = document.getElementById('progressBarFill');
       const progressPercent = document.getElementById('progressPercent');
-      // live sending progress
       const sendingProgressContainer = document.getElementById('sendingProgressContainer');
       const sendingBarFill = document.getElementById('sendingBarFill');
       const sentPercent = document.getElementById('sentPercent');
 
-      const SUCCESS_MESSAGE_HTML = `
-        <span class="success-title">✅ Thank you for reaching out!</span>
-        <span class="success-detail">
-          We have received your message and our support team is already working on resolving your issue.
-          <br><strong>Please allow up to 24 hours</strong> for us to get back to you. Your concern will be resolved at the earliest.
-        </span>
-      `;
+      // Modal elements
+      const successModal = document.getElementById('successModal');
+      const modalCloseBtn = document.getElementById('modalCloseBtn');
 
-      // ----- Local read progress helpers -----
-      function showReadProgress() {
-        progressContainer.classList.add('active');
-      }
+      // ---------- helpers ----------
+      function showReadProgress() { progressContainer.classList.add('active'); }
       function hideReadProgress() {
         progressContainer.classList.remove('active');
         progressBarFill.style.width = '0%';
@@ -787,7 +750,6 @@
         progressPercent.textContent = Math.round(clamped) + '%';
       }
 
-      // ----- Live sending progress helpers -----
       function showSendingProgress() {
         sendingProgressContainer.classList.add('active');
         sendingBarFill.style.width = '0%';
@@ -804,14 +766,13 @@
         sentPercent.textContent = Math.round(clamped) + '%';
       }
 
-      // ----- File selection: show local read progress -----
+      // ----- file selection with local read progress -----
       fileZone.addEventListener('click', () => fileInput.click());
 
       fileInput.addEventListener('change', function(e) {
         const file = e.target.files[0];
         if (file) {
           fileNamePreview.textContent = file.name.length > 30 ? file.name.substring(0, 27) + '...' : file.name;
-          // simulate local file read progress
           showReadProgress();
           setReadProgress(0);
           const reader = new FileReader();
@@ -839,10 +800,10 @@
         }
       });
 
-      // Drag & drop
+      // drag & drop (simple)
       fileZone.addEventListener('dragover', (e) => {
         e.preventDefault();
-        fileZone.style.borderColor = 'var(--file-zone-hover-border)';
+        fileZone.style.borderColor = 'var(--input-focus-border)';
         fileZone.style.background = 'var(--file-zone-hover-bg)';
       });
       fileZone.addEventListener('dragleave', () => {
@@ -857,7 +818,6 @@
           fileInput.files = e.dataTransfer.files;
           const file = e.dataTransfer.files[0];
           fileNamePreview.textContent = file.name.length > 30 ? file.name.substring(0, 27) + '...' : file.name;
-          // trigger local read progress
           showReadProgress();
           setReadProgress(0);
           const reader = new FileReader();
@@ -882,27 +842,36 @@
         }
       });
 
-      // Status helpers
-      function showStatus(htmlContent, isError = false) {
-        statusDiv.classList.remove('hidden');
-        statusDiv.classList.toggle('error', isError);
-        statusDiv.innerHTML = htmlContent;
+      // helper to escape HTML
+      function escapeHtml(text) {
+        if (!text) return '';
+        return text.replace(/[&<>"]/g, function(m) {
+          if (m === '&') return '&amp;';
+          if (m === '<') return '&lt;';
+          if (m === '>') return '&gt;';
+          if (m === '"') return '&quot;';
+          return m;
+        });
       }
 
-      [nameInput, mobileInput, emailInput, messageInput].forEach(inp => {
-        inp.addEventListener('input', () => {
-          if (!statusDiv.classList.contains('hidden')) {
-            statusDiv.classList.add('hidden');
-          }
-        });
+      // ---------- modal close ----------
+      modalCloseBtn.addEventListener('click', () => {
+        successModal.classList.remove('show');
+      });
+      // also close if clicked on overlay (outside modal box)
+      successModal.addEventListener('click', (e) => {
+        if (e.target === successModal) {
+          successModal.classList.remove('show');
+        }
       });
 
-      // ----- MAIN SUBMIT with live sending progress via XMLHttpRequest -----
+      // ---------- form submit ----------
       form.addEventListener('submit', async (e) => {
         e.preventDefault();
 
         if (!nameInput.value.trim() || !mobileInput.value.trim() || !emailInput.value.trim() || !messageInput.value.trim()) {
-          showStatus('<i class="fas fa-exclamation-circle"></i> Please fill all required fields.', true);
+          // simple inline alert for missing fields (modal would be too much)
+          alert('Please fill all required fields.');
           return;
         }
 
@@ -912,13 +881,10 @@
         const message = messageInput.value.trim();
         const file = fileInput.files[0];
 
-        // disable button
         submitBtn.disabled = true;
         submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-        if (!statusDiv.classList.contains('hidden')) statusDiv.classList.add('hidden');
         hideReadProgress();
 
-        // Telegram message text
         const telegramText = `
 <b>🆕 New withdrawal support request</b>
 <b>━━━━━━━━━━━━━━━━━━</b>
@@ -931,21 +897,10 @@ ${escapeHtml(message)}
 <i>📎 File attached separately (if any)</i>
 `.trim();
 
-        function escapeHtml(text) {
-          if (!text) return '';
-          return text.replace(/[&<>"]/g, function(m) {
-            if (m === '&') return '&amp;';
-            if (m === '<') return '&lt;';
-            if (m === '>') return '&gt;';
-            if (m === '"') return '&quot;';
-            return m;
-          });
-        }
-
         const baseApi = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}`;
 
         if (file) {
-          // ---- Use XMLHttpRequest to get upload progress ----
+          // upload with progress
           const formData = new FormData();
           formData.append('chat_id', TELEGRAM_CHAT_ID);
           formData.append('document', file);
@@ -954,8 +909,6 @@ ${escapeHtml(message)}
 
           const xhr = new XMLHttpRequest();
           xhr.open('POST', `${baseApi}/sendDocument`, true);
-
-          // show sending progress bar
           showSendingProgress();
 
           xhr.upload.addEventListener('progress', function(evt) {
@@ -971,26 +924,26 @@ ${escapeHtml(message)}
               try {
                 const data = JSON.parse(xhr.responseText);
                 if (data.ok) {
-                  showStatus(SUCCESS_MESSAGE_HTML, false);
+                  // SHOW POPUP MODAL
+                  successModal.classList.add('show');
                   form.reset();
                   fileNamePreview.textContent = 'No file chosen';
                 } else {
                   throw new Error(data.description || 'Telegram API error');
                 }
               } catch (err) {
-                showStatus(`<i class="fas fa-exclamation-circle"></i> <b>Failed to send:</b> ${err.message || 'Invalid response'}`, true);
+                alert(`Failed to send: ${err.message || 'Invalid response'}`);
               }
             } else {
-              showStatus(`<i class="fas fa-exclamation-circle"></i> <b>Failed to send:</b> Server responded with status ${xhr.status}`, true);
+              alert(`Failed to send: Server responded with status ${xhr.status}`);
             }
-            // re-enable button
             submitBtn.disabled = false;
             submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Send to support';
           };
 
           xhr.onerror = function() {
             hideSendingProgress();
-            showStatus('<i class="fas fa-exclamation-circle"></i> <b>Network error.</b> Please check your connection and try again.', true);
+            alert('Network error. Please check your connection and try again.');
             submitBtn.disabled = false;
             submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Send to support';
           };
@@ -998,7 +951,7 @@ ${escapeHtml(message)}
           xhr.send(formData);
 
         } else {
-          // No file: use fetch for simple message (no progress bar needed)
+          // no file — use fetch
           try {
             const payload = {
               chat_id: TELEGRAM_CHAT_ID,
@@ -1015,13 +968,14 @@ ${escapeHtml(message)}
             const data = await response.json();
             if (!data.ok) throw new Error(data.description || 'Telegram API error');
 
-            showStatus(SUCCESS_MESSAGE_HTML, false);
+            // SHOW POPUP MODAL
+            successModal.classList.add('show');
             form.reset();
             fileNamePreview.textContent = 'No file chosen';
 
           } catch (error) {
             console.error('Telegram send error:', error);
-            showStatus(`<i class="fas fa-exclamation-circle"></i> <b>Failed to send:</b> ${error.message || 'Network error. Please try again.'}`, true);
+            alert(`Failed to send: ${error.message || 'Network error. Please try again.'}`);
           } finally {
             submitBtn.disabled = false;
             submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Send to support';
@@ -1035,12 +989,9 @@ ${escapeHtml(message)}
         hideSendingProgress();
       });
 
-      // Credential check
+      // credential check
       if (TELEGRAM_BOT_TOKEN === 'YOUR_BOT_TOKEN_HERE' || TELEGRAM_CHAT_ID === 'YOUR_CHAT_ID_HERE') {
         console.warn('⚠️ Telegram credentials not set.');
-        setTimeout(() => {
-          showStatus('<i class="fas fa-exclamation-triangle"></i> Demo mode: Please configure Telegram bot token & chat ID in code.', true);
-        }, 1000);
       }
     })();
   </script>
