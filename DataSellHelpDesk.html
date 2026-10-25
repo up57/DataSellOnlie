@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Data Sell Help Desk · Popup</title>
+  <title>Data Sell Help Desk</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
     /* ---------- CSS variables (light & dark) ---------- */
@@ -47,6 +47,9 @@
       --modal-shadow: 0 30px 60px rgba(0, 150, 255, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.1);
       --modal-text: #d0e5ff;
       --modal-title: #9dd0ff;
+      /* Heading gradient for dark mode */
+      --heading-gradient: linear-gradient(135deg, #d6e6ff, #88d0ff, #b0e0ff);
+      --heading-icon-color: #4ec9ff;
     }
 
     body.light {
@@ -89,6 +92,9 @@
       --modal-shadow: 0 30px 60px rgba(0, 100, 200, 0.2), 0 0 0 1px rgba(255, 255, 255, 0.8);
       --modal-text: #1a2a44;
       --modal-title: #0a4a8a;
+      /* Heading gradient for light mode (darker for better contrast) */
+      --heading-gradient: linear-gradient(135deg, #0a2a5e, #1e5fa0, #3a7bc8);
+      --heading-icon-color: #1a6ed8;
     }
 
     * {
@@ -108,7 +114,7 @@
       transition: background 0.3s ease;
     }
 
-    /* ----- main card (same as before, but simplified for demo) ----- */
+    /* ----- main card ----- */
     .glass-card {
       background: var(--glass-bg);
       backdrop-filter: blur(16px) saturate(180%);
@@ -138,11 +144,12 @@
       border-bottom: 1px solid var(--header-underline);
     }
 
+    /* ✅ हेडर टेक्स्ट और आइकॉन के रंग को वेरिएबल्स से जोड़ा गया है */
     .header h1 {
       font-size: 1.9rem;
       font-weight: 700;
       letter-spacing: -0.5px;
-      background: linear-gradient(135deg, #d6e6ff, #88d0ff, #b0e0ff);
+      background: var(--heading-gradient);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
@@ -154,10 +161,10 @@
 
     .header h1 i {
       font-size: 2.1rem;
-      color: #4ec9ff;
-      filter: drop-shadow(0 0 10px rgba(42, 160, 255, 0.6));
+      color: var(--heading-icon-color);
+      filter: drop-shadow(0 0 10px rgba(42, 160, 255, 0.4));
       background: transparent;
-      -webkit-text-fill-color: #4ec9ff;
+      -webkit-text-fill-color: var(--heading-icon-color);
     }
 
     .header p {
@@ -201,7 +208,7 @@
 
     .input-group label i {
       font-size: 1rem;
-      color: #4ec9ff;
+      color: var(--label-color);
       width: 18px;
     }
 
@@ -215,7 +222,7 @@
       color: var(--text-primary);
       outline: none;
       transition: all 0.25s;
-      box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.2);
+      box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.1);
       width: 100%;
     }
 
@@ -228,7 +235,7 @@
     .input-group input:focus,
     .input-group textarea:focus {
       border-color: var(--input-focus-border);
-      box-shadow: 0 0 0 4px rgba(50, 150, 255, 0.2), inset 0 2px 6px #000;
+      box-shadow: 0 0 0 4px rgba(50, 150, 255, 0.2), inset 0 2px 6px rgba(0,0,0,0.1);
     }
 
     .input-group input::placeholder,
@@ -260,8 +267,8 @@
 
     .file-zone i {
       font-size: 1.6rem;
-      color: #4ec9ff;
-      filter: drop-shadow(0 0 6px rgba(33, 128, 255, 0.6));
+      color: var(--label-color);
+      filter: drop-shadow(0 0 6px rgba(33, 128, 255, 0.3));
     }
 
     .file-zone .file-label {
@@ -297,7 +304,7 @@
       border-radius: 50px;
     }
 
-    /* progress bars (simplified, still functional) */
+    /* progress bars */
     .upload-progress-container,
     .sending-progress-container {
       display: none;
@@ -327,7 +334,7 @@
 
     .sending-progress-label .sent-percent {
       font-weight: 700;
-      color: #4ec9ff;
+      color: var(--label-color);
     }
 
     .progress-bar-wrapper,
@@ -411,10 +418,11 @@
       transform: translateX(5px) scale(1.1);
     }
 
+    /* ✅ Sending state को और साफ़ (Vibrant) दिखाने के लिए opacity बढ़ाई गई है */
     .submit-btn:disabled {
-      opacity: 0.65;
-      transform: scale(0.99);
+      opacity: 0.85; 
       cursor: not-allowed;
+      background: linear-gradient(120deg, #1652cc, #0d85e0, #009ce6); /* थोड़ा डार्क शेड */
     }
 
     /* footer */
@@ -458,7 +466,7 @@
       border-color: var(--input-focus-border);
     }
 
-    /* ---------- POPUP MODAL (CENTERED, UNIQUE STYLE) ---------- */
+    /* ---------- POPUP MODAL ---------- */
     .modal-overlay {
       position: fixed;
       inset: 0;
@@ -503,9 +511,9 @@
 
     .modal-icon {
       font-size: 3.8rem;
-      color: #4ec9ff;
+      color: var(--label-color);
       margin-bottom: 0.8rem;
-      filter: drop-shadow(0 0 18px rgba(0, 200, 255, 0.6));
+      filter: drop-shadow(0 0 18px rgba(0, 200, 255, 0.4));
       animation: float 2s infinite ease-in-out;
     }
 
@@ -518,18 +526,12 @@
     .modal-title {
       font-size: 1.6rem;
       font-weight: 800;
-      background: linear-gradient(135deg, #b0e0ff, #4ec9ff);
+      background: var(--heading-gradient);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
       margin-bottom: 0.6rem;
       letter-spacing: -0.3px;
-    }
-
-    body.light .modal-title {
-      background: linear-gradient(135deg, #0a4a8a, #1a7ae0);
-      -webkit-background-clip: text;
-      background-clip: text;
     }
 
     .modal-message {
@@ -541,12 +543,8 @@
     }
 
     .modal-message strong {
-      color: #9dd0ff;
+      color: var(--label-color);
       font-weight: 600;
-    }
-
-    body.light .modal-message strong {
-      color: #1a5a9e;
     }
 
     .modal-close-btn {
@@ -595,7 +593,8 @@
     }
   </style>
 </head>
-<body class="light'>
+<!-- ✅ Body में light क्लास डिफ़ॉल्ट रूप से लगी है -->
+<body class="light">
   <!-- theme toggle -->
   <div class="theme-toggle" id="themeToggle" title="Toggle dark/light mode">
     <i class="fas fa-moon"></i>
@@ -668,7 +667,7 @@
     </div>
   </div>
 
-  <!-- ========== POPUP MODAL (centered) ========== -->
+  <!-- ========== POPUP MODAL ========== -->
   <div class="modal-overlay" id="successModal">
     <div class="modal-box">
       <div class="modal-icon">
@@ -692,11 +691,16 @@
       const body = document.body;
       const icon = themeToggle.querySelector('i');
 
-      const savedTheme = localStorage.getItem('theme');
+      const savedTheme = localStorage.getItem('theme') || 'light'; 
+      
       if (savedTheme === 'light') {
         body.classList.add('light');
         icon.classList.remove('fa-moon');
         icon.classList.add('fa-sun');
+      } else {
+        body.classList.remove('light');
+        icon.classList.remove('fa-sun');
+        icon.classList.add('fa-moon');
       }
 
       themeToggle.addEventListener('click', () => {
@@ -766,7 +770,7 @@
         sentPercent.textContent = Math.round(clamped) + '%';
       }
 
-      // ----- file selection with local read progress -----
+      // ----- file selection -----
       fileZone.addEventListener('click', () => fileInput.click());
 
       fileInput.addEventListener('change', function(e) {
@@ -800,7 +804,7 @@
         }
       });
 
-      // drag & drop (simple)
+      // drag & drop
       fileZone.addEventListener('dragover', (e) => {
         e.preventDefault();
         fileZone.style.borderColor = 'var(--input-focus-border)';
@@ -858,7 +862,6 @@
       modalCloseBtn.addEventListener('click', () => {
         successModal.classList.remove('show');
       });
-      // also close if clicked on overlay (outside modal box)
       successModal.addEventListener('click', (e) => {
         if (e.target === successModal) {
           successModal.classList.remove('show');
@@ -870,7 +873,6 @@
         e.preventDefault();
 
         if (!nameInput.value.trim() || !mobileInput.value.trim() || !emailInput.value.trim() || !messageInput.value.trim()) {
-          // simple inline alert for missing fields (modal would be too much)
           alert('Please fill all required fields.');
           return;
         }
@@ -924,7 +926,6 @@ ${escapeHtml(message)}
               try {
                 const data = JSON.parse(xhr.responseText);
                 if (data.ok) {
-                  // SHOW POPUP MODAL
                   successModal.classList.add('show');
                   form.reset();
                   fileNamePreview.textContent = 'No file chosen';
@@ -968,7 +969,6 @@ ${escapeHtml(message)}
             const data = await response.json();
             if (!data.ok) throw new Error(data.description || 'Telegram API error');
 
-            // SHOW POPUP MODAL
             successModal.classList.add('show');
             form.reset();
             fileNamePreview.textContent = 'No file chosen';
@@ -989,7 +989,6 @@ ${escapeHtml(message)}
         hideSendingProgress();
       });
 
-      // credential check
       if (TELEGRAM_BOT_TOKEN === 'YOUR_BOT_TOKEN_HERE' || TELEGRAM_CHAT_ID === 'YOUR_CHAT_ID_HERE') {
         console.warn('⚠️ Telegram credentials not set.');
       }
